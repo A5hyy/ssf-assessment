@@ -1,10 +1,12 @@
 package com.vttp2022.ssfassessment.model;
 
+import jakarta.json.JsonNumber;
 import jakarta.json.JsonObject;
+import jakarta.json.JsonString;
 
-public class newsData {
+public class Data {
     
-    private int id;
+    private String id;
     private int published_on;
     private String title;
     private String url;
@@ -13,11 +15,42 @@ public class newsData {
     private String tags;
     private String categories;
 
-    public newsData(){
+    public static Data createJson(JsonObject jo){
+        Data d =new Data();
+
+        JsonString jsId = jo.getJsonString("id");
+        d.id = jsId.getString();
+
+        JsonNumber jnPublishedOn = jo.getJsonNumber("published_on");
+        d.published_on = jnPublishedOn.intValue();
+
+        JsonString jsTitle = jo.getJsonString("title");
+        d.title = jsTitle.getString();
+
+        JsonString jsUrl = jo.getJsonString("url");
+        d.url = jsUrl.getString();
+
+        JsonString jsImageUrl = jo.getJsonString("imageurl");
+        d.imageurl = jsImageUrl.getString();
+
+        JsonString jsBody = jo.getJsonString("body");
+        d.body = jsBody.getString();
+
+        JsonString jsTags = jo.getJsonString("tags");
+        d.tags = jsTags.getString();
+
+        JsonString jsCategories = jo.getJsonString("categories");
+        d.categories = jsCategories.getString();
+        return d;
+
+    
+    }
+
+    public Data(){
         
     }
 
-    public newsData(int id, int published_on, String title, String url, String imageurl, String body, String tags,
+    public Data(String id, int published_on, String title, String url, String imageurl, String body, String tags,
             String categories) {
         this.id = id;
         this.published_on = published_on;
@@ -29,11 +62,11 @@ public class newsData {
         this.categories = categories;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -91,10 +124,6 @@ public class newsData {
 
     public void setCategories(String categories) {
         this.categories = categories;
-    }
-
-    public static newsData createJson(JsonObject joData) {
-        return null;
     }
 
 

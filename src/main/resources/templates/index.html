@@ -13,21 +13,21 @@
     </h1>
 <form action="#"
     th:action="@{/showArticle}"
-    th:object="${newstest}"
+    th:object="${data}"
     method="post">
 
     <input type="submit" value="Save">
 
 </form>
 
-    <p th:text="*{id}">
+  <p th:text="*{id}">
     <p th:text="*{published_on}"> 
     <p th:text="*{title}">
     <p th:text="*{url}">   
     <p th:text="*{imageurl}">
     <p th:text="*{body}">
     <p th:text="*{tags}">
-    <p th:text="*{categories}">
+    <p th:text="*{categories}"> 
 
 </body>
 </html>

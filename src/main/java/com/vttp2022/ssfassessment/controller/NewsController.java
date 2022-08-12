@@ -1,6 +1,7 @@
 package com.vttp2022.ssfassessment.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
-import com.vttp2022.ssfassessment.model.newsData;
+import com.vttp2022.ssfassessment.model.Data;
+import com.vttp2022.ssfassessment.service.NewsService;
 
 
 @Controller
@@ -21,34 +23,37 @@ public class NewsController {
 
     RestTemplate template = new RestTemplate();
 
-    
+@Autowired
+NewsService service;    
 @GetMapping("/")
-public String getIndex(@ModelAttribute newsData test){
+public String getIndex(@ModelAttribute Data test){
 
     return "index";
     }
 
 @PostMapping("/showArticle")
-public String getArticle(@ModelAttribute newsData test, Model model){
+public String getArticle(@ModelAttribute Data test, Model model){
     String url = "https://min-api.cryptocompare.com/data/v2/news/?lang=EN";
     String apiKey = System.getenv("API_KEY");
 
     RequestEntity<Void> request = RequestEntity.get(url)
-    .header("apikey", apiKey)
-    .accept(MediaType.APPLICATION_JSON)
-    .build();
-ResponseEntity<newsData> response = template.exchange(request, newsData.class);
+                                               .header("apikey", apiKey)
+                                               .accept(MediaType.APPLICATION_JSON)
+                                               .build();
+ResponseEntity<Data> response = template.exchange(request, Data.class);
 
-    newsData ndata = response.getBody();
+    Data data = response.getBody();
 
-    model.addAttribute("id", ndata.getId());
-        model.addAttribute("published_on", ndata.getPublished_on());
-        model.addAttribute("title", ndata.getTitle());
-        model.addAttribute("url", ndata.getUrl() );
-        model.addAttribute("imageurl", ndata.getImageurl() );
-        model.addAttribute("body", ndata.getBody() );
-        model.addAttribute("tags", ndata.getTags() );
-        model.addAttribute("categories", ndata.getCategories() );
+    service.save(data);
+
+    model.addAttribute("id", data.getId());
+        model.addAttribute("published_on", data.getPublished_on());
+        model.addAttribute("title", data.getTitle());
+        model.addAttribute("url", data.getUrl() );
+        model.addAttribute("imageurl", data.getImageurl() );
+        model.addAttribute("body", data.getBody() );
+        model.addAttribute("tags", data.getTags() );
+        model.addAttribute("categories", data.getCategories() );
 
     return "article";
     }
