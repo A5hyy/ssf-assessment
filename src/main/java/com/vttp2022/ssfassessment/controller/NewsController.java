@@ -1,8 +1,10 @@
 package com.vttp2022.ssfassessment.controller;
 
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import com.vttp2022.ssfassessment.model.Data;
+import com.vttp2022.ssfassessment.model.News;
 import com.vttp2022.ssfassessment.service.NewsService;
 
 
@@ -30,6 +33,22 @@ public class NewsController {
 NewsService service;     
 @GetMapping("/")
 public String getIndex(@ModelAttribute Data test, Model model){
+  
+    /* Array arrays = new Array() {
+        
+    };
+    Arrays newsArrays = service.getArticles();
+
+    if(newsArrays == null) {
+        model.addAttribute("news", new Arrays());
+        return "index";
+
+    }
+
+    List<Data> fields = Arrays.getFields();
+    model.addAttribute("arrays", arrays);
+    model.addAttribute("fields", fields); */
+    
     return "index";
 } 
     

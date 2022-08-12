@@ -39,4 +39,8 @@ public class NewsService implements NewsRepo {
     public Arrays getArticles() {
         return null;
     }
+
+    public NewsService(){
+        
+    }
 }
