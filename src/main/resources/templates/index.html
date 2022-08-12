@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+</head>
+<body>
+
+    <h1>
+        CRYPTO NEWS OF THE DAY
+    </h1>
+<form action="#"
+    th:action="@{/showArticle}"
+    th:object="${newstest}"
+    method="post">
+
+    <input type="submit" value="Save">
+
+</form>
+
+    <p th:text="*{id}">
+    <p th:text="*{published_on}"> 
+    <p th:text="*{title}">
+    <p th:text="*{url}">   
+    <p th:text="*{imageurl}">
+    <p th:text="*{body}">
+    <p th:text="*{tags}">
+    <p th:text="*{categories}">
+
+</body>
+</html>
