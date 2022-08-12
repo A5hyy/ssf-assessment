@@ -1,5 +1,6 @@
 package com.vttp2022.ssfassessment.service;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,13 @@ public class NewsService implements NewsRepo {
         Data redisConvert = redisTemplate.opsForValue().get(load);
         return redisConvert;
 
+    }
+
+    public Data findById(String aId) {
+        return null;
+    }
+
+    public Arrays getArticles() {
+        return null;
     }
 }

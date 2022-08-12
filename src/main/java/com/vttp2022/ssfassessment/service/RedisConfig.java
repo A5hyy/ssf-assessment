@@ -30,7 +30,7 @@ public class RedisConfig {
     private String redisPassword = System.getenv("REDIS_KEY");
 
 
-    @Bean(name = "games")
+    @Bean(name = "news")
     @Scope("singleton")
     public RedisTemplate<String, Data> redisTemplate() {
         final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();

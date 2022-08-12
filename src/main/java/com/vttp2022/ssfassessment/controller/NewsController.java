@@ -1,6 +1,9 @@
 package com.vttp2022.ssfassessment.controller;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
@@ -24,12 +27,12 @@ public class NewsController {
     RestTemplate template = new RestTemplate();
 
 @Autowired
-NewsService service;    
+NewsService service;     
 @GetMapping("/")
-public String getIndex(@ModelAttribute Data test){
-
+public String getIndex(@ModelAttribute Data test, Model model){
     return "index";
-    }
+} 
+    
 
 @PostMapping("/showArticle")
 public String getArticle(@ModelAttribute Data test, Model model){
@@ -40,7 +43,7 @@ public String getArticle(@ModelAttribute Data test, Model model){
                                                .header("apikey", apiKey)
                                                .accept(MediaType.APPLICATION_JSON)
                                                .build();
-ResponseEntity<Data> response = template.exchange(request, Data.class);
+    ResponseEntity<Data> response = template.exchange(request, Data.class);
 
     Data data = response.getBody();
 
